@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | Space Fighter</title>
     <script src="Build/UnityLoader.js"></script>
     <script>
-      UnityLoader.instantiate("unityContainer", "Build/游戏WebGL.json");
+        UnityLoader.instantiate("unityContainer", "Build/spacefighter.json");
+
+        function Reset() {
+            var canvas = document.getElementById("#canvas"); //获取#canvas
+            var h = document.documentElement.clientHeight; //获取body可见区域高度
+            var w = document.documentElement.clientWidth; //获取body可见区域高度
+            var scale = 1920 / 1080;
+            if (w / h > scale) {
+                canvas.height = h;
+                canvas.width = h * scale;
+            }
+            if (w / h < scale) {
+                canvas.height = w / scale;
+                canvas.width = w;
+            }
+        }
     </script>
-  </head>
-  <body>
+</head>
+
+<body onload="Reset()" onresize="Reset()">
     <div id="unityContainer" style="width: 1920px; height: 1080px; margin: auto"></div>
-  </body>
+</body>
+
 </html>
